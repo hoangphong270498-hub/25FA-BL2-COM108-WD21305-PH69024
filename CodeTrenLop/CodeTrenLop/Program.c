@@ -38,6 +38,29 @@ void sapXepPhanTuMang()
 	}
 
 }
+void demoMangHaiChieu()
+{
+	int mang2Chieu[2][3];
+	for (int j = 0; j < 3; j++)
+	{
+		for (int i = 0; i < 2; i++)
+		{
+			printf("mang[%d][%d]= ", i, j);
+			scanf("%d", &mang2Chieu[i][j]);
+		}
+
+	}
+
+	for (int i = 0; i < 2; i++)
+	{
+		for (int j = 0; j < 3; j++)
+		{
+			printf("%d, ", mang2Chieu[i][j]);
+		}
+		printf("\n");
+	}
+
+}
 
 void lapChucNang(int chonChucNang)
 {
@@ -50,10 +73,10 @@ void lapChucNang(int chonChucNang)
 			kiemTraSoNguyen();
 			break;
 		case 2:
-			sapXepPhanTuMang;
+			sapXepPhanTuMang();
 			break;
 		case 3:
-			// ham goi chuc nang 3
+			demoMangHaiChieu();
 			break;
 		default:
 			printf("Chon sai. Chuc nang hop le [0-3]");
@@ -76,29 +99,40 @@ int main()
 		printf("\n");
 		printf("1. Kiem Tra So Nguyen");
 		printf("\n");
-		printf("2. TEN chuc nang 2");
+		printf("2. Sap xep mang 1 chieu");
 		printf("\n");
-		printf("3. TEN chuc nang 3");
+		printf("3. Demo mang 2 chieu");
 		printf("\n");
 		printf("0. Thoat");
 		printf("\n");
 		printf("Hay chon chuc nang [0-3]: ");
 		scanf("%d", &chonChucNang);
-		switch (chonChucNang)
+		int tiepTuc = 1;
+		while (tiepTuc == 1)
 		{
-		case 1:
-			kiemTraSoNguyen();
-			break;
-		case 2:
-			sapXepPhanTuMang();
-			break;
-		case 3:
-			// ham goi chuc nang 3
-			break;
-		default:
-			printf("Chon sai. Chuc nang hop le [0-3]");
-			break;
+			switch (chonChucNang)
+			{
+			case 1:
+				kiemTraSoNguyen();
+				break;
+			case 2:
+				sapXepPhanTuMang();
+				break;
+			case 3:
+				demoMangHaiChieu();
+				break;
+			default:
+				printf("Chon sai. Chuc nang hop le [0-3]");
+				break;
+			}
+
+			printf("Tiep tuc thuc hien chuc nang nay? [1=Co | 0=Khong]: ");
+			scanf("%d", &tiepTuc);
+			system("cls");
 		}
+
+		
+
 	} while (chonChucNang != 0);
 }
 
