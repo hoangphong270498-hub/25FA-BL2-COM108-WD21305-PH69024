@@ -127,124 +127,30 @@ void tinh_tien_cho_quan_karaoke()
 
 void tinh_tien_dien()
 {
-	int soKwh;
-	double tienDien = 0;
 
-	printf("Nhap so kWh dien su dung: ");
-	scanf("%d", &soKwh);
+	printf("Chuong trinh dang phat trien\n");
 
-	if (soKwh <= 50) 
-	{
-		tienDien = soKwh * 1.678;
-	}
-	else if (soKwh <= 100) 
-	{
-		tienDien = soKwh * 1.734;
-	}
-	else if (soKwh <= 200) 
-	{
-		tienDien = soKwh * 2.014;
-	}
-	else if (soKwh <= 300) 
-	{
-		tienDien = soKwh * 2536;
-	}
-	else if (soKwh <= 400) 
-	{
-		tienDien = soKwh * 2834;
-	}
-	else 
-	{
-		tienDien = soKwh * 2927;
-	}
-
-	printf("So tien dien phai tra la: %.0lf dong\n", tienDien);
-
-	return 0;
 }
-
 
 void doi_tien()
 {
-	int tien;
-	printf("Nhap so tien can doi: ");
-	scanf("%d", &tien);
 
-	int menhGia[] = { 500, 200, 100, 50, 20, 10, 5, 2, 1 };
-	int soLuong;
+	printf("Chuong trinh dang phat trien\n");
 
-	printf("Cach doi tien:\n");
-
-	for (int i = 0; i < 9; i++) 
-	{
-		if (tien >= menhGia[i]) 
-		{
-			soLuong = tien / menhGia[i];  
-			tien = tien % menhGia[i];     
-			printf("%d to %d\n", soLuong, menhGia[i]);
-		}
-	}
-
-	if (tien == 0) 
-	{
-		printf("Da doi xong tien.\n");
-	}
-
-	return 0;
 }
-
-
 
 void tinh_lai_suat_vay_ngan_hang_tra_gop()
 {
-	double tienVay;
-    double laiSuat = 0.05; // 5%/tháng
-    int kyHan = 12; // 12 tháng
 
-    printf("Nhap so tien muon vay: ");
-	scanf("%lf", &tienVay);
+	printf("Chuong trinh dang phat trien\n");
 
-	double gocHangThang = tienVay / kyHan; 
-	double tienConLai = tienVay;
-
-	printf("Ky han\tLai phai tra\tGoc phai tra\tTong tien phai tra\tSo tien con lai\n");
-
-	for (int thang = 1; thang <= kyHan; thang++) 
-	{
-	 double laiHangThang = tienConLai * laiSuat;
-	 double tongPhaiTra = gocHangThang + laiHangThang;
-			tienConLai -= gocHangThang;
-
-	 printf("%2d\t%.0lf\t\t%.0lf\t\t%.0lf\t\t\t%.0lf\n",
-				thang, laiHangThang, gocHangThang, tongPhaiTra, tienConLai);
-	}
-
-		return 0;
-	}
+}
 
 void vay_tien_mua_xe()
 {
-	double giaXe = 500000000; 
-	double laiSuatNam = 0.072; 
-	int thoiHanNam = 24;       
 
-	double maxPhanTram;
-	printf("Nhap so phan tram vay toi da (vd: 80): ");
-	scanf("%lf", &maxPhanTram);
+	printf("Chuong trinh dang phat trien\n");
 
-	double soTienVay = giaXe * maxPhanTram / 100.0;
-	double tienTraTruoc = giaXe - soTienVay;
-
-	int soThang = thoiHanNam * 12;
-	double laiSuatThang = laiSuatNam / 12;
-
-	double tienHangThang = soTienVay * (laiSuatThang * pow(1 + laiSuatThang, soThang)) /
-		(pow(1 + laiSuatThang, soThang) - 1);
-
-	printf("\nTien tra truoc: %.0lf VND\n", tienTraTruoc);
-	printf("Tien phai tra hang thang: %.0lf VND\n", tienHangThang);
-
-	return 0;
 }
 
 void sap_xem_thong_tin_sinh_vien()
@@ -257,62 +163,14 @@ void sap_xem_thong_tin_sinh_vien()
 void xay_dung_game_FPOLY_LOTT()
 {
 
-	int soNN1, soNN2;
-	int rnd1, rnd2;
-	int dem = 0;
+	printf("Chuong trinh dang phat trien\n");
 
-	printf("Nhap so thu nhat (1 - 15): ");
-	scanf("%d", &soNN1);
-
-	printf("Nhap so thu hai (1 - 15): ");
-	scanf("%d", &soNN2);
-
-	if (soNN1 < 1 || soNN1 > 15 || soNN2 < 1 || soNN2 > 15) 
-	{
-		printf("So khong hop le! Chi duoc nhap tu 1 den 15.\n");
-		return 0;
-	}
-
-	srand(time(NULL)); 
-	rnd1 = rand() % 15 + 1;
-	rnd2 = rand() % 15 + 1;
-
-	printf("\n=== KET QUA FPOLY-LOTT ===\n");
-	printf("So ban chon: %d - %d\n", soNN1, soNN2);
-	printf("So trung thuong: %d - %d\n", rnd1, rnd2);
-
-	if (soNN1 == rnd1 || soNN1 == rnd2) dem++;
-	if (soNN2 == rnd1 || soNN2 == rnd2) dem++;
-
-	if (dem == 0) 
-	{
-		printf("\nChuc ban may man lan sau!\n");
-	}
-	else if (dem == 1) 
-	{
-		printf("\nChuc mung ban da trung giai NHI!\n");
-	}
-	else {
-		printf("\nChuc mung ban da trung giai NHAT!!!\n");
-	}
-
-	return 0;
 }
-
 
 void tinh_toan_phan_so()
 {
-	int tu, mau;
-printf("Nhap tu so: ");
-scanf("%d", &tu);
-printf("Nhap mau so: ");
-scanf("%d", &mau);
+	printf("Chuong trinh dang phat trien\n");
 
-int uc = (tu, mau);
-tu /= uc;
-mau /= uc;
-
-printf("Phan so rut gon: %d/%d\n", tu, mau);
 }
 
 int main()
