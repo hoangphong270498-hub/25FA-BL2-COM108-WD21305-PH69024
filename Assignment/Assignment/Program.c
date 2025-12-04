@@ -1,6 +1,7 @@
-﻿// PH67033_Kiều Đức Hải.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
+﻿
+#include <math.h>
+#include <stdlib.h>
+#include <time.h>
 #include <stdio.h>
 
 void kiem_tra_so_nguyen()
@@ -256,63 +257,104 @@ void sap_xem_thong_tin_sinh_vien()
 
 void xay_dung_game_FPOLY_LOTT()
 {
-
-	int soNN1, soNN2;
-	int rnd1, rnd2;
-	int dem = 0;
-
-	printf("Nhap so thu nhat (1 - 15): ");
-	scanf("%d", &soNN1);
-
-	printf("Nhap so thu hai (1 - 15): ");
-	scanf("%d", &soNN2);
-
-	if (soNN1 < 1 || soNN1 > 15 || soNN2 < 1 || soNN2 > 15) 
+	system("cls");
+	printf_s("CN9: GAME FPOLY-LOTT\n");
+	printf_s("-----Bat dau thuc hien chuc nang-----\n");
+	int so1, so2, soTrung1, soTrung2;
+	int giaiThuong = 0;
+	srand(time(NULL));
+	soTrung1 = rand() % 15 + 1;
+	do
 	{
-		printf("So khong hop le! Chi duoc nhap tu 1 den 15.\n");
-		return 0;
-	}
-
-	srand(time(NULL)); 
-	rnd1 = rand() % 15 + 1;
-	rnd2 = rand() % 15 + 1;
-
-	printf("\n=== KET QUA FPOLY-LOTT ===\n");
-	printf("So ban chon: %d - %d\n", soNN1, soNN2);
-	printf("So trung thuong: %d - %d\n", rnd1, rnd2);
-
-	if (soNN1 == rnd1 || soNN1 == rnd2) dem++;
-	if (soNN2 == rnd1 || soNN2 == rnd2) dem++;
-
-	if (dem == 0) 
+		soTrung2 = rand() % 15 + 1;
+	} while (soTrung1 == soTrung2);
+	while (1)
 	{
-		printf("\nChuc ban may man lan sau!\n");
+		printf("Hay nhap 2 may man cua ban (tu 1 den 15):\n");
+		printf("So thu nhat: ");
+		scanf_s("%d", &so1);
+		printf("So thu hai : ");
+		scanf_s("%d", &so2);
+		if (so1 < 1 || so1 > 15 || so2 < 1 || so2 > 15 || so1 == so2)
+		{
+			printf_s("Vui long nhap 2 so khac nhau va trong khoang 1 den 15\n");
+			continue;
+		}
+		break;
 	}
-	else if (dem == 1) 
+	printf("======================================\n");
+	printf("     KET QUA XO SO HOM NAY\n");
+	printf("So trung giai: %02d va %02d\n", soTrung1, soTrung2);
+	printf("Ban da chon   : %02d va %02d\n", so1, so2);
+	printf("======================================\n");
+	if (so1 == soTrung1 || so1 == soTrung2) giaiThuong++;
+	if (so2 == soTrung1 || so2 == soTrung2) giaiThuong++;
+	if (giaiThuong == 0)
 	{
-		printf("\nChuc mung ban da trung giai NHI!\n");
+		printf("Rat tiec! Ban chua trung so nao.\n");
+		printf("Chuc ban may man lan sau!\n");
 	}
-	else {
-		printf("\nChuc mung ban da trung giai NHAT!!!\n");
+	else if (giaiThuong == 1) {
+		printf("CHUC MUNG! Ban da trung 1 so!\n");
+		printf("=> Ban da trung giai nhi!\n");
 	}
-
-	return 0;
+	else
+	{
+		printf("*** CHUC MUNG BAN DA TRUNG GIAI NHAT!!! ***\n");
+	}
 }
-
 
 void tinh_toan_phan_so()
 {
-	int tu, mau;
-printf("Nhap tu so: ");
-scanf("%d", &tu);
-printf("Nhap mau so: ");
-scanf("%d", &mau);
+	system("cls");
+	printf_s("CN10: TINH TOAN PHAN SO\n");
+	printf_s("-----Bat dau thuc hien chuc nang-----\n");
+	int tu1, tu2, mau1, mau2;
+	printf("_Phan so thu nhat:\n");
+	printf("Moi nhap tu so: ");
+	scanf_s("%d", &tu1);
+	do {
+		printf("Moi nhap mau so (khac 0): ");
+		scanf_s("%d", &mau1);
+		if (mau1 == 0) printf("Mau so khong duoc bang 0!\n");
+	} while (mau1 == 0);
 
-int uc = (tu, mau);
-tu /= uc;
-mau /= uc;
+	printf("_Phan so thu hai:\n");
+	printf("Moi nhap tu so: ");
+	scanf_s("%d", &tu2);
+	do {
+		printf("Moi nhap mau so (khac 0): ");
+		scanf_s("%d", &mau2);
+		if (mau2 == 0) printf("Loi: Mau so khong duoc bang 0!\n");
+	} while (mau2 == 0);
+	printf("\nPhan so thu nhat co dang: %d/%d\n", tu1, mau1);
+	printf("Phan so thu hai co dang: %d/%d\n", tu2, mau2);
+	printf("=======================================\n");
+	printf("          BAT DAU TINH TOAN         \n");
+	printf("=======================================\n");
 
-printf("Phan so rut gon: %d/%d\n", tu, mau);
+	int tu_tong = tu1 * mau2 + tu2 * mau1;
+	int mau_tong = mau1 * mau2;
+	printf(" Tong = %d/%d + %d/%d = %d/%d\n", tu1, mau1, tu2, mau2, tu_tong, mau_tong);
+
+	int tu_hieu = tu1 * mau2 - tu2 * mau1;
+	int mau_hieu = mau1 * mau2;
+	printf(" Hieu = %d/%d - %d/%d = %d/%d\n", tu1, mau1, tu2, mau2, tu_hieu, mau_hieu);
+
+	int tu_tich = tu1 * tu2;
+	int mau_tich = mau1 * mau2;
+	printf(" Tich = %d/%d * %d/%d = %d/%d\n", tu1, mau1, tu2, mau2, tu_tich, mau_tich);
+
+	int tu_thuong = tu1 * mau2;
+	int mau_thuong = mau1 * tu2;
+	if (mau_thuong == 0) {
+		printf("Mau thuong bang 0. Khong hop le!\n");
+	}
+	else {
+		printf("Thuong = %d/%d : %d/%d = %d/%d\n", tu1, mau1, tu2, mau2, tu_thuong, mau_thuong);
+	}
+	printf("\n********\n");
+	printf("KET THUC TINH TOAN !!!\n");
 }
 
 int main()
