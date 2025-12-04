@@ -53,6 +53,7 @@ void kiem_tra_so_nguyen()
 	{
 		printf("So %d khong phai la so chinh phuong.\n", soNguyen);
 	}
+	return 0;
 }
 
 void tim_uoc_so_chung_va_boi_so_chung_cua_hai_so()
@@ -88,9 +89,7 @@ void tim_uoc_so_chung_va_boi_so_chung_cua_hai_so()
 	bcnn = (x * y) / ucln;
 	printf("Uoc chung lon nhat cua %d va %d la : %d\n", x, y, ucln);
 	printf("Boi chung nho nhat cua %d va %d la : %d\n", x, y, bcnn);
-
-
-
+	return 0;
 }
 
 void tinh_tien_cho_quan_karaoke()
@@ -248,7 +247,7 @@ void vay_tien_mua_xe()
 	return 0;
 }
 
-void sap_xem_thong_tin_sinh_vien()
+void sap_xep_thong_tin_sinh_vien()
 {
 
 	printf("Chuong trinh dang phat trien\n");
@@ -404,7 +403,7 @@ int main()
 			vay_tien_mua_xe();
 			break;
 		case 8:
-			sap_xem_thong_tin_sinh_vien();
+			sap_xep_thong_tin_sinh_vien();
 			break;
 		case 9:
 			xay_dung_game_FPOLY_LOTT();

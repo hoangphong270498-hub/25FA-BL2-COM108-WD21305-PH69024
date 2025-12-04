@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <string.h>
+#include<stdlib.h>
 
 void kiemTraSoNguyen()
 {
@@ -72,7 +74,44 @@ void demoMangHaiChieu()
 	}
 
 }
+void demostring()
+{
+	char mangKyTU[100] = "NAM";
 
+	while (getchar() != '\n')
+
+	printf("Nhap du lieu String: ");
+    fgets(mangKyTU, sizeof(mangKyTU), stdin);
+
+	printf("%s", mangKyTU);
+	printf("\n");
+
+	printf("%d", strlen(mangKyTU) - 1);
+	printf("\n");
+
+	printf("%d", strcmp("A", "B"));
+	printf("\n");
+	char str[5] = "ABC";
+	printf("%s", _strrev(str));
+	printf("\n");
+
+	printf("%s", _strlwr(str));
+	printf("\n");
+
+	printf("%s", _strupr(str));
+	printf("\n");
+
+	if (strstr("ABC", "D") != NULL; 
+	{
+		printf(strstr("ABC", "D"))
+	}
+	else
+	{
+		printf("NOT FOUND");
+	}
+
+
+}
 void lapChucNang(int chonChucNang)
 {
 	int tiepTuc = 1;
@@ -114,6 +153,8 @@ int main()
 		printf("\n");
 		printf("3. Demo mang 2 chieu");
 		printf("\n");
+		printf("4.Demo String");
+		printf("\n");
 		printf("0. Thoat");
 		printf("\n");
 		printf("Hay chon chuc nang [0-3]: ");
@@ -132,6 +173,8 @@ int main()
 			case 3:
 				demoMangHaiChieu();
 				break;
+			case 4:
+				demostring();
 			default:
 				printf("Chon sai. Chuc nang hop le [0-3]");
 				break;
