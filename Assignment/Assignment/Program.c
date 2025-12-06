@@ -1,8 +1,10 @@
 ﻿
+#include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
+#include <string.h>
 #include <time.h>
-#include <stdio.h>
+#define MAX 100
 
 void kiem_tra_so_nguyen()
 {
@@ -246,11 +248,71 @@ void vay_tien_mua_xe()
 
 	return 0;
 }
+struct sinhVien
+{
+	char hoten[50];
+	float diem;
+	char hocluc[20];
+};
 
 void sap_xep_thong_tin_sinh_vien()
 {
 
-	printf("Chuong trinh dang phat trien\n");
+	int n;
+	struct sinhVien sv[MAX], temp;
+
+	printf("NHap so luong sinh vien: ");
+	scanf("%d", &n);
+	getchar();
+
+
+	for (int i = 0; i < n; i++)
+	{
+		printf("\nSinh vien %d:\n", i + 1);
+		printf("Ho ten: ");
+		fgets(sv[i].hoten, sizeof(sv[i].hoten), stdin);  
+		sv[i].hoten[strcspn(sv[i].hoten, "\n")] = '\0';
+
+		printf("So Diem: ");
+		scanf("%f", &sv[i].diem);
+		getchar();
+		if (sv[i].diem >= 9.0)
+			strcpy(sv[i].hocluc, "Xuat sac");
+		else if (sv[i].diem >= 8.0)
+			strcpy(sv[i].hocluc, "Gioi");
+		else if (sv[i].diem >= 6.5)
+			strcpy(sv[i].hocluc, "Kha");
+		else if (sv[i].diem >= 5.0)
+			strcpy(sv[i].hocluc, "Trung binh");
+		else
+			strcpy(sv[i].hocluc, "Yeu");
+	}
+
+	// Xep theo diem giam dan
+	for (int i = 0; i < n - 1; i++)
+	{
+		for (int j = i + 1; j < n; j++)
+		{
+			if (sv[i].diem < sv[j].diem)
+			{
+				temp = sv[i];
+				sv[i] = sv[j];
+				sv[j] = temp;
+			}
+		}
+	}
+
+
+	printf("\n+------------------------------+--------+----------------+\n");
+	printf("| Ho ten                       | So Diem| Hoc luc        |\n");
+	printf("+------------------------------+--------+----------------+\n");
+
+	for (int i = 0; i < n; i++)
+	{
+		printf("| %-28s | %-6.1f | %-14s |\n", sv[i].hoten, sv[i].diem, sv[i].hocluc);
+	}
+
+	printf("+------------------------------+--------+----------------+\n");
 
 }
 
