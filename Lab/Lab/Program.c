@@ -1,108 +1,198 @@
 ﻿// CConsoleApplication.c : file nay chua 'main' function. 
-// Chuong trinh phan mem Bat dau thuc thi & Ket thuc o day.
+// Chuong t
 
 #include <stdio.h>
-void timGiaTriLonVaNhoNhat()
+#include <math.h>
+#include <string.h>
+
+void Menu()
 {
+    printf("\n============ MENU CHUC NANG ============\n");
+    printf("1. Thong tin thu cung\n");
+    printf("2. Tong cac so\n");
+    printf("3. Thong tin cua hang\n");
+    printf("0. Thoat chuong trinh\n");
+    printf("=======================================\n");
+}
+
+#define MAX 100
+void thongTinThuCung()
+{
+    system("cls");
+    printf_s("CN1: THONG TIN THU CUNG\n");
+    printf_s("-----Bat dau thuc hien chuc nang-----\n");
     int n;
-    printf("Nhap so phan tu cua mang: ");
-    scanf("%d", &n);
-
-    int mang[4];   
-    int i;
-
-    for (i = 0; i < n; i++) 
+    int tuoi;
+    struct ThuCung
     {
-        printf("Nhap mang[%d]: ", i);
-        scanf("%d", &mang[i]);
-    }
-
-    int max = mang[0];
-    int min = mang[0];
-
-    for (i = 0; i < n; i++) {
-        if (mang[i] > max)
-            max = mang[i];
-        if (mang[i] < min)
-            min = mang[i];
-    }
-    printf("Gia tri lon nhat: %d\n", max);
-    printf("Gia tri nho nhat: %d\n", min);
-    return 0;
-
-}
-void lapChucNang(int chonChucNang)
-{
-    int tiepTuc = 1;
-    while (tiepTuc == 1)
+        char ma[10];
+        char ten[30];
+        int namSinh;
+    };
+    printf_s("Nhap so luong thu cung can kiem tra: ");
+    scanf_s("%d", &n);
+    struct ThuCung thuCung[MAX];
+    for (int i = 0; i < n; i++)
     {
-        switch (chonChucNang)
-        {
-        case 1:
-            timGiaTriLonVaNhoNhat;
-            break;
-        case 2:
-            break;
-        case 3:
-            break;
-        default:
-            printf("Chon sai. Chuc nang hop le [0-3]");
-            break;
-        }
-
-        printf("Tiep tuc thuc hien chuc nang nay? [1=Co | 0=Khong]: ");
-        scanf("%d", &tiepTuc);
-        system("cls");
+        printf_s("Nhap thong tin thu cung thu %d:\n", i + 1);
+        printf_s("Ma thu cung: ");
+        scanf_s("%s", thuCung[i].ma, sizeof(thuCung[i].ma));
+        printf_s("Ten thu cung: ");
+        scanf_s("%s", thuCung[i].ten, sizeof(thuCung[i].ten));
+        do {
+            printf_s("Nam sinh: ");
+            if (scanf_s("%d", &thuCung[i].namSinh) < 0 || scanf_s("%d", &thuCung[i].namSinh) > 2025)
+            {
+                printf_s("Nam sinh khong hop le. Vui long nhap lai!\n");
+            }
+        } while (thuCung[i].namSinh < 0 || thuCung[i].namSinh > 2025);
     }
-
+    system("cls");
+    printf_s("\nDanh sach thu cung vua nhap:\n");
+    for (int i = 0; i < n; i++)
+    {
+        printf_s("Thu cung thu %d:\n", i + 1);
+        printf_s("Ma thu cung: %s\n", thuCung[i].ma);
+        printf_s("Ten thu cung: %s\n", thuCung[i].ten);
+        printf_s("Nam sinh: %d\n", thuCung[i].namSinh);
+        printf_s("Tuoi: %d\n", 2025 - thuCung[i].namSinh);
+    }
 }
-int main()
+void tinhTong()
 {
-    int chonChucNang;
+    system("cls");
+    printf_s("CN2: TONG CAC SO LE TU 1 DEN N\n");
+    printf_s("-----Bat dau thuc hien chuc nang-----\n");
+    int n;
     do
     {
-        printf("Menu");
-        printf("\n");
-        printf("1. Tim gia tri lon nhat");
-        printf("\n");
-        printf("2. Tim gia tri nho nhat");
-        printf("\n");
-        printf("3. TEN chuc nang 3");
-        printf("\n");
-        printf("0. Thoat");
-        printf("\n");
-        printf("Hay chon chuc nang [0-3]: ");
-        scanf("%d", &chonChucNang);
-        switch (chonChucNang)
+        printf_s("Nhap so nguyen duong n lon hon 3: ");
+        scanf_s("%d", &n);
+        if (n <= 3)
         {
-        case 1:
-            timGiaTriLonVaNhoNhat;
-            break;
-        case 2:
-            lapChucNang;
-            break;
-        case 3:
-            // ham goi chuc nang 3
-            break;
-        default:
-            printf("Chon sai. Chuc nang hop le [0-3]");
-            break;
+            printf_s("So ban nhap khong hop le. Vui long nhap lai!\n");
         }
-    } while (chonChucNang != 0);
+    } while (n <= 3);
+    printf_s("Cac so le tu 1 den %d la: ", n);
+    {
+        for (int i = 1; i <= n; i++)
+        {
+            printf_s("%d ", i);
+        }
+    }
+    printf_s("\nTong cac so le tu 1 den %d la: ", n);
+    {
+        double tong = 0;
+        for (int i = 1; i <= n; i += 2)
+        {
+            tong += i;
+        }
+        printf_s("%.2f\n", tong);
+    }
+}
+void thongtinCuaHang()
+{
+    system("cls");
+    printf_s("CN3: THONG TIN CUA HANG\n");
+    int n;
+    printf_s("Nhap so luong thu cung can quan ly: ");
+    scanf_s("%d", &n);
+    printf_s("\n");
+    do
+    {
+        if (n <= 0)
+        {
+            printf_s("So luong thu cung khong hop le.Vui long nhap lai\n");
+            return;
+        }
+    } while (n <= 0);
+    printf_s("Nhap mang can nang cua thu cung:\n");
+    float canNang[MAX];
+    for (int i = 0; i < n; i++)
+    {
+        printf_s("Can nang thu cung thu %d: ", i + 1);
+        scanf_s("%f", &canNang[i]);
+    }
+    float maxCanNang = canNang[0];
+    for (int i = 1; i < n; i++)
+    {
+        if (canNang[i] > maxCanNang)
+        {
+            maxCanNang = canNang[i];
+        }
+    }
+    double canNangTB = 0;
+    for (int i = 0; i < n; i++)
+    {
+        canNangTB += canNang[i];
+    }
+    canNangTB /= n;
+    double minCanNang = canNang[0];
+    for (int i = 1; i < n; i++)
+    {
+        if (canNang[i] < minCanNang)
+        {
+            minCanNang = canNang[i];
+        }
+    }
+    printf_s("Can nang nho nhat trong cac thu cung la: %.2f\n", minCanNang);
+    printf_s("Can nang trung binh cua cac thu cung la: %.2f\n", canNangTB);
+    printf_s("Can nang lon nhat trong cac thu cung la: %.2f\n", maxCanNang);
+    printf_s("Cac thu cung co can nang be hon can nang trung binh la:\n");
+    for (int i = 0; i < n; i++)
+    {
+        if (canNang[i] < canNangTB)
+        {
+            printf_s("Thu cung thu %d co can nang la: %.2f\n", i + 1, canNang[i]);
+        }
+    }
 }
 
+int main()
+{
+    int chon, tiepTuc;
+    do
+    {
+        Menu();
+        do
+        {
+            printf("Xin moi chon chuc nang (0-3): ");
+            scanf_s("%d", &chon);
 
-// Debug/Run chuong trinh: bam "F5" hoac "Debug > Start Debugging" tren menu
+            if (chon < 0 || chon > 3)
+            {
+                printf("So ban nhap khong hop le (0-3). Vui long nhap lai!\n");
+            }
+        } while (chon < 0 || chon > 3);
 
-// Danh cho nguoi moi bat dau:
-//   1. Dung "Solution Explorer window" de them/quan ly cac files
-//   2. Dung "Output window" de kiem tra "build output" va "cac thong bao khac"
-//   3. Dung "Error List window" de xem loi
-//   4. Chon "Project > Add New Item" de tao moi file code,
-//      hoac "Project > Add Existing Item" de them file da ton tai vao project nay.
-//   5. Sau nay, de mo lai project nay,
-//      chon "File > Open > Project" va chon file *.sln
-//      Co the xem thu muc project, noi luu file *.sln bang cach
-//      bam phim chuot phai vao "Solution" > chon "Open Folder in File Explorer"
+        if (chon != 0)
+        {
+            do
+            {
+                switch (chon)
+                {
+                case 1:
+                    thongTinThuCung();
+                    break;
+                case 2:
+                    tinhTong();
+                    break;
+                case 3:
+                    thongtinCuaHang();
+                    break;
+                }
 
-// GV: AnhTT184
+                printf("Ban co muon thuc hien lai chuc nang nay [1 = Co || 0 = Khong]\n");
+                printf("Moi nguoi dung nhap: ");
+                if (scanf_s("%d", &tiepTuc) != 1)
+                {
+                    tiepTuc = 0;
+                }
+
+            } while (tiepTuc == 1);
+
+            system("cls");
+        }
+
+    } while (chon != 0);
+}
